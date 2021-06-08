@@ -1,0 +1,45 @@
+//
+//  PrefixHeader.pch
+//  EquiriesProject
+//
+//  Created by qianfeng on 15/10/28.
+//  Copyright (c) 2015年 HXH. All rights reserved.
+//
+
+#ifndef EquiriesProject_PrefixHeader_pch
+#define EquiriesProject_PrefixHeader_pch
+
+#import "Header.h"
+#import <BaiduMapAPI/BMapKit.h>
+#import "CoreData+MagicalRecord.h"
+#import <CoreData/CoreData.h>
+#import "Masonry.h"
+#import "Fundction.h"
+#import "MJRefresh.h"
+#import "UIImageView+AFNetworking.h"
+#import "Wether.h"
+#import "SettinfCell.h"
+#import "LoginVC.h"
+#import "LookDriveVC.h"
+#import "OrderVC.h"
+#import "PreferentialVC.h"
+#import "MessageVC.h"
+#import "CarManagerVC.h"
+#import "SettingVC.h"
+#import "LiycRequest.h"
+#import "CityVC.h"
+#import "addressModel.h"
+#import "LoginVC.h"
+#import "SucShowView.h"
+#import "TableViewCell.h"
+#import "AddCarTwocell.h"
+#import "addCarThreeCell.h"
+#import "MBProgressHUD.h"
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#define  WIDTH  self.view.bounds.size.width
+#define  HEIGHT self.view.bounds.size.height
+
+#endif
