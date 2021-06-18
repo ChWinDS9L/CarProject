@@ -12,6 +12,7 @@
 
 
 #import "LoginVC.h"
+#import "User.h"
 
 @interface LoginVC ()<UITextFieldDelegate>
 
@@ -21,6 +22,7 @@
 {
     UITextField * userTextField;
     UITextField * passwordTextField;
+    BOOL _bol;
 }
 
 - (void)viewDidLoad {
@@ -108,14 +110,38 @@
 //登录
 -(void)loginClick
 {
+    _bol = NO;
+    int i = 0;
+    
     if([self isPhoneNumber]){
         
-        NSLog(@"是手机号");
+        NSArray * array = [User MR_findAll];
+        
+        for (User * user in array) {
+            if (![user.username isEqualToString:userTextField.text]) {
+                
+                i++;
+                
+            }else{
+                if ([user.password isEqualToString:passwordTextField.text]) {
+                    
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    
+                }else{
+                    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"请输入正确的密码" delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+                    [alert show];
+                }
+            }
+        }
+        if (i == array.count) {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"该用户不存在,请注册" delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+            [alert show];
+        }
         
     }else{
         
         userTextField.text = @"";
-        
+        [self judgeRight];
         [self shake];
         
     }
@@ -136,6 +162,13 @@
     NSString *phoneRegex = @"^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$";
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
     return [phoneTest evaluateWithObject:phone];
+}
+
+//判断错误提示
+-(void)judgeRight
+{
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"请输入正确的用户名" delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+    [alert show];
 }
 
 //晃动方法
